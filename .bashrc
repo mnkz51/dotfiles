@@ -8,6 +8,20 @@ case $- in
     *) return ;;
 esac
 
+# For dir colors
+case "$OSTYPE" in
+    darwin*)
+        if [ -f /usr/local/bin/gdircolors ] && [ -f /usr/local/bin/gls ]; then
+            test -r ~/.dircolors && eval "$(gdircolors -b ~/.dircolors)" || eval "$(gdircolors -b)"
+            alias ls='gls --color=auto --time-style=long-iso'
+        fi
+        ;;
+    linux*)
+        test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+        alias ls='ls --color=auto --time-style=long-iso'
+        ;;
+esac
+
 # For bash completion
 if [ -f "/usr/local/etc/bash_completion" ]; then
     source "/usr/local/etc/bash_completion"
