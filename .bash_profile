@@ -8,6 +8,12 @@ fi
 
 export PATH="/usr/local/bin:$HOME/bin:$PATH"
 
-eval "$(anyenv init -)"
+if [ -f ~/.asdf/asdf.sh ]; then
+    . ~/.asdf/asdf.sh
+fi
+
+if [ -f ~/.asdf/completions/asdf.bash ]; then
+    . ~/.asdf/completions/asdf.bash
+fi
 
 # __END__
